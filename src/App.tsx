@@ -1,5 +1,13 @@
+import { Button } from './components/Button';
+
 function App() {
-  return <h1>Hello NLW</h1>;
+  return (
+    <>
+      <Button color="red">Red</Button>
+      <Button color="green">Green</Button>
+      <Button color="blue">Blue</Button>
+    </>
+  );
 }
 
 export default App;
