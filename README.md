@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="public/logo-full.svg" width="200" />
+  <img src="public/logo-full.svg" width="400" />
 </p>
 
 <h3 align="center">
-  Projeto desenvolvido durante a 4º edição da Next Level Week da <a href="https://rocketseat.com.br/">Rocketseat</a> 🚀
+  Projeto desenvolvido durante a 4º edição da Next Level Week da <a href="https://rocketseat.com.br/" target="_blank">Rocketseat</a> 🚀
 </h3>
 
 <div align="center">
@@ -13,7 +13,7 @@
 ![Twitter Follow](https://img.shields.io/twitter/follow/wnqueiroz?label=Twitter&style=for-the-badge)
 
 <strong>
-<a href="https://moveit-bay-delta.vercel.app/">Live Demo »</a></strong>
+<a href="https://moveit-bay-delta.vercel.app/" target="_blank">Live Demo »</a></strong>
 
 </div>
 
