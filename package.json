@@ -1,5 +1,6 @@
 {
-  "name": "moveit-next",
+  "name": "moveit",
+  "description": "Projeto desenvolvido durante a 4º edição da Next Level Week da Rocketseat 🚀",
   "version": "0.1.0",
   "private": true,
   "scripts": {
