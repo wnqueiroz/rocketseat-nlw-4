@@ -15,6 +15,11 @@
 <strong>
 <a href="https://moveit-bay-delta.vercel.app/" target="_blank">Live Demo »</a></strong>
 
+<br/>
+<br/>
+<img src="docs/demo.gif" width="720" />
+<br/>
+<br/>
 </div>
 
 ## Tabela de conteúdo
