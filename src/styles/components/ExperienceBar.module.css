@@ -26,4 +26,87 @@ span.currentExperience {
   position: absolute;
   top: 12px;
   transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.experienceBar > div > span > span:before,
+.experienceBar > div > span > span:after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 2px;
+  height: 2px;
+  background-color: var(--green);
+  opacity: 0;
+}
+
+.experienceBar > div > span > span:after {
+  animation: spark-1 1s linear 2;
+  transform-origin: 0 10px;
+  top: -20px;
+  left: 25px;
+}
+
+.experienceBar > div > span > span:before {
+  animation: spark-2 1s linear 2;
+  transform-origin: 0 -20px;
+  top: -20px;
+  left: 25px;
+}
+
+@keyframes spark-1 {
+  0% {
+    transform: rotate(0);
+    opacity: 1;
+  }
+  20% {
+    transform: rotate(110deg) translate(-15px, -10px);
+    opacity: 0;
+  }
+  20.5% {
+    transform: rotate(0);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(180deg);
+    opacity: 0;
+  }
+  50.5% {
+    transform: rotate(0);
+    opacity: 1;
+  }
+  70% {
+    transform: rotate(110deg) translate(-15px, -10px);
+    opacity: 0;
+  }
+  70.5% {
+    transform: rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes spark-2 {
+  0% {
+    transform: rotate(0);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(-45deg) translateY(30px);
+    transform-origin: 0 0;
+    opacity: 0;
+  }
+  51% {
+    transform: rotate(0);
+    transform-origin: 0 20px;
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-90deg) translate(-20px, -10px);
+    transform-origin: 0 0;
+    opacity: 0;
+  }
 }

@@ -17,6 +17,8 @@ interface ChallengesContextData {
   challengesCompleted: number
   experienceToNextLevel: number
   activeChallenge: Challenge
+  hasCompletedChallenge: boolean
+  hasIncreasedLevel: boolean
   levelUp: () => void
   startNewChallenge: () => void
   resetChallenge: () => void
@@ -46,6 +48,8 @@ export function ChallengesProvider({
   )
   const [activeChallenge, setActiveChallenge] = useState(null)
   const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false)
+  const [hasCompletedChallenge, setHasCompletedChallenge] = useState(false)
+  const [hasIncreasedLevel, setHasIncreasedLevel] = useState(false)
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
 
@@ -59,9 +63,30 @@ export function ChallengesProvider({
     Cookies.set('challengesCompleted', String(challengesCompleted))
   }, [level, currentExperience, challengesCompleted])
 
+  const playAudio = async (url) => {
+    const context = new AudioContext()
+    let gainNode = context.createGain()
+
+    const source = context.createBufferSource()
+    const audioBuffer = await fetch(url)
+      .then((res) => res.arrayBuffer())
+      .then((ArrayBuffer) => context.decodeAudioData(ArrayBuffer))
+
+    source.buffer = audioBuffer
+
+    source.connect(gainNode)
+    gainNode.connect(context.destination)
+    gainNode.gain.setValueAtTime(0.4, context.currentTime) // volume, 0 means mute
+
+    source.start()
+  }
+
   function levelUp() {
+    playAudio('/level-up.mp3')
+
     setLevel(level + 1)
     setIsLevelUpModalOpen(true)
+    setHasIncreasedLevel(true)
   }
 
   function closeLevelUpModal() {
@@ -74,6 +99,7 @@ export function ChallengesProvider({
     const challenge = challenges[randomChallengeIndex]
 
     setActiveChallenge(challenge)
+    setHasCompletedChallenge(false)
 
     new Audio('/notification.mp3').play()
 
@@ -86,6 +112,7 @@ export function ChallengesProvider({
 
   function resetChallenge() {
     setActiveChallenge(null)
+    setHasCompletedChallenge(false)
   }
 
   function completeChallenge() {
@@ -98,11 +125,14 @@ export function ChallengesProvider({
     if (finalExperience >= experienceToNextLevel) {
       finalExperience = finalExperience - experienceToNextLevel
       levelUp()
+    } else {
+      setHasIncreasedLevel(false)
     }
 
     setCurrentExperience(finalExperience)
     setActiveChallenge(null)
     setChallengesCompleted(challengesCompleted + 1)
+    setHasCompletedChallenge(true)
   }
 
   return (
@@ -118,6 +148,8 @@ export function ChallengesProvider({
         experienceToNextLevel,
         completeChallenge,
         closeLevelUpModal,
+        hasCompletedChallenge,
+        hasIncreasedLevel,
       }}
     >
       {children}

@@ -1,4 +1,6 @@
-import { useState, useEffect, useContext } from 'react'
+import { useContext } from 'react'
+import { motion } from 'framer-motion'
+
 import { CountdownContext } from '../contexts/CountdownContext'
 
 import styles from '../styles/components/Countdown.module.css'
@@ -45,13 +47,19 @@ export function Countdown() {
               Abandonar ciclo
             </button>
           ) : (
-            <button
+            <motion.button
+              animate={{ scale: [1, 1.02, 1] }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                repeatDelay: 1,
+              }}
               type="button"
               className={styles.countdownButton}
               onClick={startCountdown}
             >
               Iniciar um ciclo
-            </button>
+            </motion.button>
           )}
         </>
       )}
